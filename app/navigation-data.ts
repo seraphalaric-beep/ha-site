@@ -1,5 +1,6 @@
 export type NavNode = {
   name: string;
+  href?: string;
   children?: NavNode[];
 };
 
@@ -11,11 +12,25 @@ export const housingAgencyNav: NavNode[] = [
     children: [
       { name: "What We Do" },
       { name: "Our Organisation" },
-      { name: "Funding & Grants" },
-      { name: "Contact Us" },
       {
-        name: "Access to Information (FOI, data protection, etc.)"
-      }
+        name: "Governance",
+        children: [
+          { name: "Publications" },
+          { name: "Reports" },
+          { name: "Access to Information (FOI, data protection, etc.)" },
+          { name: "Procurement" }
+        ]
+      },
+      {
+        name: "Access to Information",
+        children: [
+          { name: "Access to Information on the Environment" },
+          { name: "Customer Care" },
+          { name: "Protected Disclosure" },
+          { name: "Privacy Notification" }
+        ]
+      },
+      { name: "Funding & Grants" }
     ]
   },
   {
@@ -92,7 +107,7 @@ export const housingAgencyNav: NavNode[] = [
     ]
   },
   {
-    name: "Social Inclusion (Supporting People & Communities)",
+    name: "Inclusion (Supporting People & Communities)",
     children: [
       {
         name: "Social Housing Support",
@@ -152,10 +167,20 @@ export const housingAgencyNav: NavNode[] = [
     name: "Research & Insights",
     children: [
       {
-        name: "Data Hub (Supply, Affordability, Demand, Need, Prices)"
+        name: "Data Hub",
+        children: [
+          { name: "Supply" },
+          { name: "Affordability" },
+          { name: "Demand" },
+          { name: "Need" },
+          { name: "Prices" },
+          { name: "Rent Pressure Zones" }
+        ]
       },
-      { name: "Publications" },
-      { name: "Research Support Programme" }
+      {
+        name: "Publications",
+        children: [{ name: "Research Support Programme" }]
+      }
     ]
   },
   {

@@ -27,21 +27,35 @@ function Column({ items, title, onHoverItem }: ColumnProps) {
       <ul className="px-2 pb-3 pt-1">
         {items.map((item) => (
           <li key={item.name}>
-            <button
-              type="button"
-              onMouseEnter={() => onHoverItem?.(item)}
-              className="flex w-full items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-xs text-emerald-50/90 hover:bg-emerald-800/70 hover:text-white active:bg-emerald-700"
-            >
-              <span className="truncate">{item.name}</span>
-              {item.children?.length ? (
-                <span
-                  aria-hidden="true"
-                  className="text-[11px] text-emerald-200/80"
-                >
-                  ▸
+            {item.href ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-xs text-emerald-50/90 hover:bg-emerald-800/70 hover:text-white active:bg-emerald-700"
+              >
+                <span className="truncate">{item.name}</span>
+                <span aria-hidden="true" className="text-[11px] text-emerald-200/80">
+                  ↗
                 </span>
-              ) : null}
-            </button>
+              </a>
+            ) : (
+              <button
+                type="button"
+                onMouseEnter={() => onHoverItem?.(item)}
+                className="flex w-full items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-xs text-emerald-50/90 hover:bg-emerald-800/70 hover:text-white active:bg-emerald-700"
+              >
+                <span className="truncate">{item.name}</span>
+                {item.children?.length ? (
+                  <span
+                    aria-hidden="true"
+                    className="text-[11px] text-emerald-200/80"
+                  >
+                    ▸
+                  </span>
+                ) : null}
+              </button>
+            )}
           </li>
         ))}
       </ul>

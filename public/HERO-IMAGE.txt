@@ -1,0 +1,9 @@
+Add your Irish housing estate hero image here.
+
+Filename: hero.jpg (or update app/page.tsx to use hero.png etc.)
+
+Use a licensed image, for example:
+- From Glenveagh or Cairn Homes (with their permission)
+- Or from a stock library (e.g. Alamy, Getty) tagged for Irish housing estate / development
+
+The hero area uses a 4:3 aspect ratio; landscape orientation works best.

@@ -3,6 +3,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import { MainNav } from "../components/main-nav";
 import { MobileMenu } from "../components/mobile-menu";
+import { TopBarResources } from "../components/top-bar-resources";
 
 export const metadata: Metadata = {
   title: "Housing Agency | Navigation Demo",
@@ -19,15 +20,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className="min-h-screen bg-slate-950">
         <div className="relative flex min-h-screen flex-col bg-gradient-to-b from-brand.dark to-slate-950">
-          {/* Thin top bar */}
-          <div className="border-b border-emerald-900/60 bg-brand.dark/95">
+          {/* Thin top bar – elevated so Resources dropdown appears above main nav */}
+          <div className="relative z-[60] border-b border-emerald-900/60 bg-brand.dark/95">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-xs text-emerald-50/80 lg:px-6">
               <div className="flex items-center gap-6">
                 <button className="hover:text-white">Contact Us</button>
               </div>
               <div className="flex items-center gap-6">
                 <button className="hover:text-white">News &amp; Events</button>
-                <button className="hover:text-white">Resources</button>
+                <TopBarResources />
               </div>
             </div>
           </div>
