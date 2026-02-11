@@ -43,23 +43,20 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Right column: hero image – use an Irish housing estate image (e.g. from Glenveagh/Cairn with permission) at public/hero.jpg */}
+        {/* Right column: hero image */}
         <div className="relative">
           <div className="absolute -inset-6 hidden rounded-[2rem] bg-emerald-900/25 blur-2xl lg:block" />
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-emerald-200/40 bg-slate-800/60 shadow-subtle">
             {heroError ? (
               <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-4 text-center text-sm text-emerald-100/80">
                 <span className="rounded border border-dashed border-emerald-400/50 px-3 py-1.5">
-                  Irish housing estate image
+                  Image placeholder
                 </span>
-                <p className="max-w-[14rem] text-[11px] text-emerald-200/70">
-                  Add <code className="rounded bg-slate-800 px-1 py-0.5">public/hero.jpg</code> (e.g. Glenveagh or Cairn development)
-                </p>
               </div>
             ) : (
               <Image
                 src="/hero.jpg"
-                alt="Irish housing estate"
+                alt="Hero image"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
