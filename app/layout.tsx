@@ -24,10 +24,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-xs text-emerald-50/80 lg:px-6">
               <div className="flex items-center gap-6">
                 <button className="hover:text-white">Contact Us</button>
-                <button className="inline-flex items-center gap-1 hover:text-white">
-                  <span>About</span>
-                  <span aria-hidden="true">▾</span>
-                </button>
               </div>
               <div className="flex items-center gap-6">
                 <button className="hover:text-white">News &amp; Events</button>
