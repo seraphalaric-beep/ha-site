@@ -179,28 +179,44 @@ export function MobileMenu() {
               <ul className="space-y-1">
                 {currentItems.map((item) => {
                   const hasChildren = !!item.children?.length;
+                  const hasHref = !!item.href;
 
                   return (
                     <li key={item.name}>
-                      <button
-                        type="button"
-                        className="flex w-full items-center justify-between rounded-md px-3 py-4 text-left text-[2rem] font-medium leading-tight text-emerald-50/95 hover:bg-emerald-800/45"
-                        onClick={() => {
-                          if (hasChildren) {
-                            setNavStack((prev) => [...prev, item]);
-                          }
-                        }}
-                      >
-                        <span>{getTopLevelLabel(item.name)}</span>
-                        {hasChildren ? (
-                          <span
-                            aria-hidden="true"
-                            className="text-2xl text-amber-400/90"
-                          >
-                            &#8250;
+                      {hasHref ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex w-full items-center justify-between rounded-md px-3 py-4 text-left text-[2rem] font-medium leading-tight text-emerald-50/95 hover:bg-emerald-800/45"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <span>{getTopLevelLabel(item.name)}</span>
+                          <span aria-hidden="true" className="text-2xl text-amber-400/90">
+                            ↗
                           </span>
-                        ) : null}
-                      </button>
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          className="flex w-full items-center justify-between rounded-md px-3 py-4 text-left text-[2rem] font-medium leading-tight text-emerald-50/95 hover:bg-emerald-800/45"
+                          onClick={() => {
+                            if (hasChildren) {
+                              setNavStack((prev) => [...prev, item]);
+                            }
+                          }}
+                        >
+                          <span>{getTopLevelLabel(item.name)}</span>
+                          {hasChildren ? (
+                            <span
+                              aria-hidden="true"
+                              className="text-2xl text-amber-400/90"
+                            >
+                              &#8250;
+                            </span>
+                          ) : null}
+                        </button>
+                      )}
                     </li>
                   );
                 })}

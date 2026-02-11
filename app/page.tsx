@@ -1,4 +1,10 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
 export default function HomePage() {
+  const [heroError, setHeroError] = useState(false);
   return (
     <section className="relative overflow-hidden rounded-3xl bg-slate-950/40 shadow-subtle ring-1 ring-emerald-900/60">
       {/* Hero background tint */}
@@ -14,38 +20,53 @@ export default function HomePage() {
 
           <div className="space-y-3">
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-              Delivering Homes
-              <br />
-              That People Need
+              Delivering Homes People Need
             </h1>
             <p className="max-w-xl text-sm text-emerald-100/85 sm:text-base">
-              We help people get access housing supports, guide professionals
-              with trusted standards and research, and share data to improve
-              housing across Ireland.
+              The Agency’s purpose is to accelerate housing supply, in
+              partnership with our key stakeholders, by providing our
+              expertise, support and resources to deliver high-quality homes in
+              vibrant communities.
             </p>
           </div>
 
           <div className="pt-2">
-            <button className="inline-flex items-center gap-2 rounded-md border border-emerald-200/70 bg-transparent px-5 py-2.5 text-sm font-medium text-emerald-50 shadow-subtle transition hover:border-emerald-100 hover:bg-emerald-500/10">
+            <a
+              href="https://www.housingagency.ie/sites/default/files/2024-11/HA_Strategy24-WEB-singles.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-emerald-200/70 bg-transparent px-5 py-2.5 text-sm font-medium text-emerald-50 shadow-subtle transition hover:border-emerald-100 hover:bg-emerald-500/10"
+            >
               <span>More About Us</span>
               <span aria-hidden="true">→</span>
-            </button>
+            </a>
           </div>
         </div>
 
-        {/* Right column: image placeholder / wireframe */}
+        {/* Right column: hero image – use an Irish housing estate image (e.g. from Glenveagh/Cairn with permission) at public/hero.jpg */}
         <div className="relative">
           <div className="absolute -inset-6 hidden rounded-[2rem] bg-emerald-900/25 blur-2xl lg:block" />
-          <div className="relative aspect-[4/3] w-full rounded-2xl border border-emerald-200/40 bg-slate-900/80 shadow-subtle">
-            <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center text-xs text-emerald-100/75">
-              <span className="rounded-full border border-dashed border-emerald-300/60 px-3 py-1">
-                Hero image placeholder
-              </span>
-              <p className="max-w-[14rem] text-[11px] text-emerald-100/70">
-                This area stands in for photography in the real design. It keeps
-                the layout and proportions of the Housing Agency hero.
-              </p>
-            </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-emerald-200/40 bg-slate-800/60 shadow-subtle">
+            {heroError ? (
+              <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-4 text-center text-sm text-emerald-100/80">
+                <span className="rounded border border-dashed border-emerald-400/50 px-3 py-1.5">
+                  Irish housing estate image
+                </span>
+                <p className="max-w-[14rem] text-[11px] text-emerald-200/70">
+                  Add <code className="rounded bg-slate-800 px-1 py-0.5">public/hero.jpg</code> (e.g. Glenveagh or Cairn development)
+                </p>
+              </div>
+            ) : (
+              <Image
+                src="/hero.jpg"
+                alt="Irish housing estate"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                onError={() => setHeroError(true)}
+              />
+            )}
           </div>
         </div>
       </div>
