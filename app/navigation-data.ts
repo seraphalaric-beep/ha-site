@@ -155,9 +155,7 @@ export const housingAgencyNav: NavNode[] = [
         name: "Data Hub (Supply, Affordability, Demand, Need, Prices)"
       },
       { name: "Publications" },
-      { name: "News & Events" },
-      { name: "Research Support Programme" },
-      { name: "Spotlight on Housing Research" }
+      { name: "Research Support Programme" }
     ]
   },
   {
