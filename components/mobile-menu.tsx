@@ -23,7 +23,16 @@ const utilityLinks: UtilityItem[] = [
       { name: "Newsletter", href: "#" },
     ],
   },
-  { name: "Resources" },
+  {
+    name: "Resources",
+    children: [
+      { name: "Housing Manual", href: "http://www.housingmanual.ie/" },
+      { name: "Housing Training Portal", href: "https://housingtraining.ie/" },
+      { name: "Affordable Homes", href: "https://affordablehomes.ie/" },
+      { name: "Age Friendly Homes", href: "https://agefriendlyhomes.ie/" },
+      { name: "Home and Supports Hub", href: "https://www.homeandsupportshub.ie/" },
+    ],
+  },
   { name: "Contact Us" },
 ];
 
@@ -270,20 +279,28 @@ export function MobileMenu() {
                         {(() => {
                           const top = utilityStack[utilityStack.length - 1];
                           return "children" in top
-                            ? top.children?.map((item) => (
-                              <li key={item.name}>
-                                <a
-                                  href={item.href ?? "#"}
-                                  className="flex w-full rounded-md px-3 py-3 text-left text-lg text-emerald-50/90 hover:bg-emerald-800/45"
-                                  onClick={() => {
-                                    setIsOpen(false);
-                                    setUtilityStack([]);
-                                  }}
-                                >
-                                  {item.name}
-                                </a>
-                              </li>
-                            ))
+                            ? top.children?.map((item) => {
+                              const href = item.href ?? "#";
+                              const isExternal = href.startsWith("http");
+                              return (
+                                <li key={item.name}>
+                                  <a
+                                    href={href}
+                                    {...(isExternal && {
+                                      target: "_blank",
+                                      rel: "noopener noreferrer",
+                                    })}
+                                    className="flex w-full rounded-md px-3 py-3 text-left text-lg text-emerald-50/90 hover:bg-emerald-800/45"
+                                    onClick={() => {
+                                      setIsOpen(false);
+                                      setUtilityStack([]);
+                                    }}
+                                  >
+                                    {item.name}
+                                  </a>
+                                </li>
+                              );
+                            })
                             : null;
                         })()}
                       </ul>
