@@ -267,9 +267,10 @@ export function MobileMenu() {
                         </span>
                       </div>
                       <ul className="space-y-1">
-                        {"children" in utilityStack[utilityStack.length - 1] &&
-                          utilityStack[utilityStack.length - 1].children?.map(
-                            (item) => (
+                        {(() => {
+                          const top = utilityStack[utilityStack.length - 1];
+                          return "children" in top
+                            ? top.children?.map((item) => (
                               <li key={item.name}>
                                 <a
                                   href={item.href ?? "#"}
@@ -282,8 +283,9 @@ export function MobileMenu() {
                                   {item.name}
                                 </a>
                               </li>
-                            )
-                          )}
+                            ))
+                            : null;
+                        })()}
                       </ul>
                     </>
                   ) : (
