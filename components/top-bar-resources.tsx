@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const resourceLinks = [
   { name: "Housing Manual", href: "http://www.housingmanual.ie/" },
   { name: "Housing Training Portal", href: "https://housingtraining.ie/" },
-  { name: "Affordable Home", href: "https://affordablehomes.ie/" },
+  { name: "Affordable Homes", href: "https://affordablehomes.ie/" },
   { name: "Age Friendly Homes", href: "https://agefriendlyhomes.ie/" },
-  { name: "Homes and Supports Hub", href: "https://www.homeandsupportshub.ie/" },
+  { name: "Home and Supports Hub", href: "https://www.homeandsupportshub.ie/" },
 ] as const;
 
 const CLOSE_DELAY_MS = 200;

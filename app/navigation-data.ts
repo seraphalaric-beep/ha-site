@@ -8,28 +8,23 @@ export type NavNode = {
 export const housingAgencyNav: NavNode[] = [
   {
     name: "About",
-    children: [
-      { name: "What we do" },
-      { name: "Governance" },
-      { name: "Access to Information" }
-    ]
+    children: [{ name: "Corporate Publications" }]
   },
   {
     name: "Insights",
     children: [
+      { name: "Publications" },
       { name: "Data Hub" },
-      { name: "Our Publications" },
       { name: "Research Support Programme" },
       { name: "Podcasts" },
-      { name: "Webinars on YouTube" },
-      { name: "Evaluation" }
+      { name: "Webinars" }
     ]
   },
   {
-    name: "Supply and Affordability",
+    name: "Supply & Affordability",
     children: [
       {
-        name: "Supporting and enabling social housing",
+        name: "Supporting social housing delivery",
         children: [
           { name: "CALF" },
           { name: "Mortgage to Rent" },
@@ -44,20 +39,20 @@ export const housingAgencyNav: NavNode[] = [
           { name: "Cost Rental" },
           { name: "STAR (Secure Tenancy Affordable Rental investment scheme)" },
           { name: "Croí Cónaithe (Cities)" },
-          { name: "Underwriting service for Local Authority Home Loans" },
+          { name: "Local Authority Home Loans" },
           { name: "Affordable Housing Fund" },
           { name: "Affordable Purchase Scheme" }
         ]
       },
       {
-        name: "Technical supports for AHBs and local authorities to deliver housing",
+        name: "Technical supports for AHBs and local authorities",
         children: [{ name: "Built Environment and Construction Support" }]
       },
-      { name: "Vacancy" }
+      { name: "Addressing vacancy" }
     ]
   },
   {
-    name: "Inclusion & Remediation",
+    name: "Inclusion",
     children: [
       {
         name: "Homelessness",
@@ -78,14 +73,19 @@ export const housingAgencyNav: NavNode[] = [
       {
         name: "Housing networks",
         children: [
-          { name: "Multi-Unit Developments / Managed Estates" },
-          { name: "Education – Apprenticeship – Housing Bursary" }
+          {
+            name: "Education",
+            children: [
+              { name: "Apprenticeship" },
+              { name: "Housing Bursary" }
+            ]
+          }
         ]
       },
       {
         name: "Remediation",
         children: [
-          { name: "Apartments" },
+          { name: "Apartments and Duplexes" },
           { name: "Defective Concrete Blocks" },
           { name: "Pyrite Remediation Scheme" }
         ]
