@@ -3,6 +3,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import { MainNav } from "../components/main-nav";
 import { MobileMenu } from "../components/mobile-menu";
+import { TopBarNewsEvents } from "../components/top-bar-news-events";
 import { TopBarResources } from "../components/top-bar-resources";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <button className="hover:text-white">Contact Us</button>
               </div>
               <div className="flex items-center gap-6">
-                <button className="hover:text-white">News &amp; Events</button>
+                <TopBarNewsEvents />
                 <TopBarResources />
               </div>
             </div>

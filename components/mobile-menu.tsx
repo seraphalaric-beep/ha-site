@@ -9,12 +9,29 @@ const getTopLevelLabel = (name: string) => {
   return index === -1 ? name : name.slice(0, index);
 };
 
-const utilityLinks = ["News & Events", "Resources", "Contact Us"];
+type UtilityItem =
+  | { name: string }
+  | { name: string; children: { name: string; href?: string }[] };
+
+const utilityLinks: UtilityItem[] = [
+  {
+    name: "News & Events",
+    children: [
+      { name: "News", href: "#" },
+      { name: "Events", href: "#" },
+      { name: "Corporate Publications", href: "#" },
+      { name: "Newsletter", href: "#" },
+    ],
+  },
+  { name: "Resources" },
+  { name: "Contact Us" },
+];
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [navStack, setNavStack] = useState<NavNode[]>([]);
+  const [utilityStack, setUtilityStack] = useState<UtilityItem[]>([]);
 
   const currentItems =
     navStack.length > 0
@@ -54,6 +71,7 @@ export function MobileMenu() {
         aria-label="Open navigation menu"
         onClick={() => {
           setNavStack([]);
+          setUtilityStack([]);
           setIsOpen(true);
         }}
       >
@@ -79,6 +97,7 @@ export function MobileMenu() {
           onClick={() => {
             setIsOpen(false);
             setNavStack([]);
+            setUtilityStack([]);
           }}
         >
           <div
@@ -136,6 +155,7 @@ export function MobileMenu() {
                     onClick={() => {
                       setIsOpen(false);
                       setNavStack([]);
+                      setUtilityStack([]);
                     }}
                   >
                     <svg
@@ -229,18 +249,74 @@ export function MobileMenu() {
                     : "mt-5 border-t border-emerald-800/70 pt-4"
                 }
               >
-                <ul className="space-y-1">
-                  {(navStack.length === 0 ? utilityLinks : []).map((label) => (
-                    <li key={label}>
-                      <button
-                        type="button"
-                        className="w-full rounded-md px-3 py-3 text-left text-lg text-emerald-50/90 hover:bg-emerald-800/45"
-                      >
-                        {label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                {navStack.length === 0 ? (
+                  utilityStack.length > 0 ? (
+                    <>
+                      <div className="mb-3 flex items-center justify-between border-b border-emerald-800/80 pb-3">
+                        <button
+                          type="button"
+                          className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-emerald-100/90 hover:bg-emerald-800/45 hover:text-white"
+                          onClick={() => setUtilityStack((prev) => prev.slice(0, -1))}
+                          aria-label="Go back to previous menu level"
+                        >
+                          <span aria-hidden="true">‹</span>
+                          <span>Back</span>
+                        </button>
+                        <span className="text-sm font-medium text-emerald-100/90">
+                          {utilityStack[utilityStack.length - 1].name}
+                        </span>
+                      </div>
+                      <ul className="space-y-1">
+                        {"children" in utilityStack[utilityStack.length - 1] &&
+                          utilityStack[utilityStack.length - 1].children?.map(
+                            (item) => (
+                              <li key={item.name}>
+                                <a
+                                  href={item.href ?? "#"}
+                                  className="flex w-full rounded-md px-3 py-3 text-left text-lg text-emerald-50/90 hover:bg-emerald-800/45"
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setUtilityStack([]);
+                                  }}
+                                >
+                                  {item.name}
+                                </a>
+                              </li>
+                            )
+                          )}
+                      </ul>
+                    </>
+                  ) : (
+                    <ul className="space-y-1">
+                      {utilityLinks.map((item) => {
+                        const hasChildren = "children" in item && item.children?.length;
+                        return (
+                          <li key={item.name}>
+                            {hasChildren ? (
+                              <button
+                                type="button"
+                                className="flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-lg text-emerald-50/90 hover:bg-emerald-800/45"
+                                onClick={() => setUtilityStack([item])}
+                              >
+                                <span>{item.name}</span>
+                                <span aria-hidden="true" className="text-amber-400/90">
+                                  &#8250;
+                                </span>
+                              </button>
+                            ) : (
+                              <button
+                                type="button"
+                                className="w-full rounded-md px-3 py-3 text-left text-lg text-emerald-50/90 hover:bg-emerald-800/45"
+                              >
+                                {item.name}
+                              </button>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )
+                ) : null}
               </div>
             </nav>
           </div>
