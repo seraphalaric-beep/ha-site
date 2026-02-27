@@ -8,7 +8,12 @@ export type NavNode = {
 export const housingAgencyNav: NavNode[] = [
   {
     name: "About",
-    children: [{ name: "Corporate Publications" }]
+    children: [
+      { name: "What we do" },
+      { name: "Governance" },
+      { name: "Access to Information" },
+      { name: "Corporate Publications" }
+    ]
   },
   {
     name: "Insights",
