@@ -87,7 +87,9 @@ export const housingAgencyNav: NavNode[] = [
         children: [
           { name: "Apartments and Duplexes" },
           { name: "Defective Concrete Blocks" },
-          { name: "Pyrite Remediation Scheme" }
+          { name: "Pyrite Remediation Scheme" },
+          { name: "Multi-Unit Developments (MUDS)" },
+          { name: "Managed Estates" }
         ]
       }
     ]
